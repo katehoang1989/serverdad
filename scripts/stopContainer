@@ -1,0 +1,4 @@
+#!/bin/bash
+
+docker-compose -f $1 stop $2
+docker-compose -f $1 rm $2

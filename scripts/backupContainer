@@ -1,0 +1,5 @@
+#!/bin/bash
+
+USERDIR=$(eval echo ~$USER)
+
+tar -czf $1/backup/$2.tar.gz $1/../$2 > /dev/null

@@ -1,0 +1,10 @@
+#!/bin/bash
+
+LOG=/home/yatesab/apps/scripts/SystemSleep.log
+
+echo "<*********************************>" >> $LOG
+echo "System Sleep: " >> $LOG
+date >> $LOG
+echo "<*********************************>" >> $LOG
+
+sudo systemctl suspend

@@ -1,0 +1,119 @@
+version: '3.4'
+
+x-environment:
+  &default-environment
+  TZ: ${TZ}
+  PUID: ${PUID}
+  PGID: ${PGID}
+
+services:
+
+  couchpotato:
+    container_name: couchpotato
+    image: couchpotato/couchpotato:latest
+    restart: always
+    environment:
+      TZ: ${TZ}
+      CP_UID: ${PUID}
+      CP_GID: ${PGID}
+    volumes:
+      - ${APPDIR}/couchpotato:/datadir
+      - ${MOVIEDIR}:/media
+      - ${DOWNLOADDIR}:/downloads
+    ports:
+      - "${COUCHHPORT}:${COUCHCPORT}"
+
+  ombi:
+    container_name: ombi
+    image: linuxserver/ombi:latest
+    restart: always
+    environment: *default-environment
+    volumes:
+      - ${APPDIR}/ombi:/config
+    ports:
+      - "${OMBIHPORT}:${OMBICPORT}"
+
+  ouroboros:
+    container_name: ouroboros
+    image: pyouroboros/ouroboros:latest
+    restart: always
+    environment: *default-environment
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+
+  plex:
+    container_name: plex
+    image: plexinc/pms-docker:public
+    restart: always
+    network_mode: "host"
+    environment: *default-environment
+    volumes:
+      - ${APPDIR}/plex:/config
+      - ${TRANSCODEDIR}:/transcode
+      - ${LOCALMEDIADIR}:/local_media
+
+  sickrage:
+    container_name: sickrage
+    image: sickrage/sickrage:latest
+    restart: always        
+    environment: *default-environment
+    volumes:
+      - ${APPDIR}/sickrage:/config
+      - ${DOWNLOADDIR}:/downloads
+      - ${TVDIR}:/tv
+    ports:
+      - "${SICKHPORT}:${SICKCPORT}"
+
+  tautulli:
+    container_name: tautulli
+    image: tautulli/tautulli:latest
+    restart: always
+    environment: *default-environment
+    volumes:
+      - ${APPDIR}/tautulli:/config
+    ports:
+      - "${TAUTULLIHPORT}:${TAUTULLICPORT}"
+
+  transmission:
+    container_name: transmission
+    image: haugene/transmission-openvpn:latest
+    cap_add:
+      - NET_ADMIN
+    logging:
+      driver: "json-file"
+    restart: always
+    volumes:
+      - ${APPDIR}/transmission:/data
+      - ${DOWNLOADDIR}:/downloads
+      - /etc/localtime:/etc/localtime
+    environment:
+      TZ: ${TZ}
+      PUID: ${PUID}
+      PGID: ${PGID}
+      CREATE_TUN_DEVICE: 'true'
+      OPENVPN_PROVIDER: 'WINDSCRIBE'
+      OPENVPN_CONFIG: 'US-West-tcp'
+      OPENVPN_USERNAME: 'yatesab12_cq53bd'
+      OPENVPN_PASSWORD: 'bsd7rwthc8'
+      WEBPROXY_ENABLED: 'false'
+      LOCAL_NETWORK: '192.168.29.0/24'
+      TRANSMISSION_DOWNLOAD_DIR: '/downloads/complete'
+      TRANSMISSION_INCOMPLETE_DIR: '/downloads/incomplete'
+      TRANSMISSION_RPC_AUTHENTICATION_REQUIRED: 'true'
+      TRANSMISSION_RPC_USERNAME: 'yatesab'
+      TRANSMISSION_RPC_PASSWORD: ${TRANSMISSIONPASS}
+      TRANSMISSION_SPEED_LIMIT_UP_ENABLED: 'true'
+      TRANSMISSION_SPEED_LIMIT_UP: 0
+      TRANSMISSION_RATIO_LIMIT: 0
+      TRANSMISSION_RATIO_LIMIT_ENABLED: 'true'
+      TRANSMISSION_DOWNLOAD_QUEUE_SIZE: 2
+  
+  transmission-proxy:
+    container_name: transmission-proxy
+    image: haugene/transmission-openvpn-proxy
+    restart: always
+    depends_on:
+      - transmission
+    environment: *default-environment
+    ports:
+      - "${TRANSMISSIONPROXY}:${TRANSMISSIONHPORT}"
