@@ -151,31 +151,7 @@ else
 		echo "OMBIHPORT=8084" | tee -a $ENVFILE
 		echo "" >> $ENVFILE
 
-                ###########################
-                # Setup Cron Jobs
-                ###########################
-		echo ""
-		echo "Cron Jobs:"
-		echo "----------"
-		echo "Would you like to setup the sleep job? (y/n)"
-		printf "> "
-		read answer
-
-	        if [ "$answer" != "${answer#[Yy]}" ]
-        	then
-			#add to the crontab
-			echo "Sleep job added to crontab!"
-		fi
-
-                echo "Would you like to setup the update job? (y/n)"
-                printf "> "
-                read answer
-
-                if [ "$answer" != "${answer#[Yy]}" ]
-                then
-                        #add to the crontab
-                        echo "Update job added to crontab!"
-                fi
+		$FILE/cronJobsSetup
 
 		echo ""
 		echo "Setup Gdrive"
