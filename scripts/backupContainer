@@ -2,4 +2,30 @@
 
 USERDIR=$(eval echo ~$USER)
 
-tar -czf $1/backup/$2.tar.gz $1/../$2 > /dev/null
+services=( tautulli sickrage ombi couchpotato )
+
+PLEXCACHE=$1/../plex/Library/Application\ Support/Plex\ Media\ Server/Cache
+
+APPDIR=$1/../
+
+BACKUPDIR=$1/backups
+
+function backup(){
+        echo "Backing Up $1"
+        if [ "$service" = "plex" ]
+       	then
+        	tar --exclude='$PLEXCACHE' -czf $BACKDIR/plex.tar.gz --absolute-names $APPDIR/plex > /dev/null
+        else
+        	tar -czf $BACKUPDIR/$1.tar.gz --absolute-names $APPDIR/$1 > /dev/null
+	fi
+}
+
+echo "Backing Up All Services"
+echo "-----------------------"
+
+for service in "${services[@]}"
+do
+	backup $service
+done
+
+echo ""

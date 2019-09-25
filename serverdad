@@ -4,6 +4,7 @@
 FILE="$( cd "$(dirname "$0")" ; pwd -P )"
 COMPOSEFILE=$FILE/docker-compose.yml
 
+echo ""
 echo "=========================================================================="
 echo " _____                     ____        _ "
 echo "|   __|___ ___ _ _ ___ ___|    \ ___ _| |"
@@ -34,33 +35,32 @@ do
 		-r | --run )
 			shift
 			$FILE/scripts/startContainer $COMPOSEFILE $1
-			exit
+			shift
 		;;
 		-s | --stop )
 			shift
 			$FILE/scripts/stopContainer $COMPOSEFILE $1
-			exit
+			shift
 		;;
 		-u | --update )
 			shift
 			$FILE/scripts/updateContainer $COMPOSEFILE $1
-			exit
+			shift
 		;;
 		-ps | --show )
 			shift
 			$FILE/scripts/statusContainer $COMPOSEFILE $1
-			exit
+			shift
 		;;
 		-b | --backup )
 			shift
-			$FILE/scripts/backupContainer $FILE $1
-			exit
+			$FILE/scripts/backupContainer $FILE
+			shift
 		;;
 		-sy | --sync )
 			shift
-			$FILE/scripts/syncContainers
-			exit
+			$FILE/scripts/syncData $FILE
+			shift
 		;;
 	esac
 done
-

@@ -157,7 +157,7 @@ else
 		echo ""
 		echo "Cron Jobs:"
 		echo "----------"
-		echo "Would you like to setup the sleep job?"
+		echo "Would you like to setup the sleep job? (y/n)"
 		printf "> "
 		read answer
 
@@ -167,7 +167,7 @@ else
 			echo "Sleep job added to crontab!"
 		fi
 
-                echo "Would you like to setup the update job?"
+                echo "Would you like to setup the update job? (y/n)"
                 printf "> "
                 read answer
 
@@ -176,6 +176,19 @@ else
                         #add to the crontab
                         echo "Update job added to crontab!"
                 fi
+
+		echo ""
+		echo "Setup Gdrive"
+		echo "------------"
+		echo "Would you like to setup Gdrive now? (y/n)"
+		printf "> "
+		read answer
+
+		if [ "$answer" != "${answer#[Yy]}" ]
+		then
+			cp $FILE/gdrive-linux-arm64 ../gdrive
+			$FILE ../gdrive -a
+		fi
 
                 ###########################
                 # Setup App Password
