@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Get the dir of this file
-FILE="$( cd "$(dirname "$0")" ; pwd -P )"
+FILE=/home/yatesab/apps/serverdad
 COMPOSEFILE=$FILE/docker-compose.yml
 
 echo ""

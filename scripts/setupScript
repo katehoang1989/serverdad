@@ -12,8 +12,8 @@ USERDIR=$(eval echo ~$USER)
 APPDIR=$USERDIR/apps
 TRANSCODEDIR=$USERDIR/transcode
 LOCALMEDIADIR=$USERDIR/local_media
-MOVIEDIR=$USERDIR/movies
-TVDIR=$USERDIR/tv_shows
+MOVIEDIR=$USERDIR/local_media/movies
+TVDIR=$USERDIR/local_media/tv_shows
 DOWNLOADDIR=$USERDIR/local_media/downloads
 
 if [ -f "$FILE/../.env" ]
@@ -178,6 +178,10 @@ else
 
 		echo "#password" >> $ENVFILE
 		echo "TRANSMISSIONPASS='$pass'" >> $ENVFILE
+
+
+		ln -s $USERDIR/apps/serverdad/serverdad /usr/local/bin/serverdad
+		ln -s $USERDIR/apps/serverdad/serverdad /usr/local/sbin/serverdad
 
                 ###########################
                 # Move .env File
