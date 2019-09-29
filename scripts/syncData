@@ -1,5 +1,0 @@
-#!/bin/bash
-
-$1/gdrive sync upload $1/backups 10sNGS3CI7JaQLkqHwPWwtkHiHtho7-hs
-
-echo ""

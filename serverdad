@@ -1,8 +1,14 @@
 #!/bin/bash
 
-# Get the dir of this file
-FILE=/home/yatesab/apps/serverdad
-COMPOSEFILE=$FILE/docker-compose.yml
+# DIR Setup
+export DIR="$( cd "$(dirname "$0")" ; pwd -P )"
+export APPDIR=$DIR/apps
+export SCRIPTS=$DIR/scripts
+export SETUP=$SCRIPTS/setup
+export BACKUPDIR=$DIR/backups
+
+# File Setup
+export COMPOSEFILE=$DIR/docker-compose.yml
 
 echo ""
 echo "=========================================================================="
@@ -26,7 +32,7 @@ then
 fi
 
 # Check for env file
-$FILE/scripts/setupScript
+$SCRIPTS/setup.sh
 
 # Main Execution Loop
 while [ "$1" != "" ]
@@ -34,32 +40,37 @@ do
 	case $1 in
 		-r | --run )
 			shift
-			$FILE/scripts/startContainer $COMPOSEFILE $1
+			$SCRIPTS/container/start.sh $1
 			shift
 		;;
 		-s | --stop )
 			shift
-			$FILE/scripts/stopContainer $COMPOSEFILE $1
+			$SCRIPTS/container/stop.sh $1
 			shift
 		;;
 		-u | --update )
 			shift
-			$FILE/scripts/updateContainer $COMPOSEFILE $1
+			$SCRIPTS/container/update.sh $1
 			shift
 		;;
 		-ps | --show )
 			shift
-			$FILE/scripts/statusContainer $COMPOSEFILE $1
+			$SCRIPTS/container/status.sh $1
 			shift
 		;;
 		-b | --backup )
 			shift
-			$FILE/scripts/backupContainer $FILE
+			$SCRIPTS/backup.sh
+			shift
+		;;
+		-re | --restore )
+			shift
+			$SCRIPTS/restore.sh
 			shift
 		;;
 		-sy | --sync )
 			shift
-			$FILE/scripts/syncData $FILE
+			$SCRIPTS/sync.sh
 			shift
 		;;
 	esac
