@@ -6,6 +6,7 @@ export APPDIR=$DIR/apps
 export SCRIPTS=$DIR/scripts
 export SETUP=$SCRIPTS/setup
 export BACKUPDIR=$DIR/backups
+export ENVFILE=$SCRIPTS/.env
 
 # File Setup
 export COMPOSEFILE=$DIR/docker-compose.yml
@@ -31,47 +32,56 @@ then
         sudo apt install docker docker-compose -y
 fi
 
-# Check for env file
-$SCRIPTS/setup.sh
+if [ ! -f "$DIR/.env" ]
+then
+	$SETUP/envCreation.sh
+else
+	# Main Execution Loop
+	while [ "$1" != "" ]
+	do
+		case $1 in
+			-r | --run )
+				shift
+				$SCRIPTS/container/start.sh $1
+				shift
+			;;
+			-s | --stop )
+				shift
+				$SCRIPTS/container/stop.sh $1
+				shift
+			;;
+			-u | --update )
+				shift
+				$SCRIPTS/container/update.sh $1
+				shift
+			;;
+			-ps | --show )
+				shift
+				$SCRIPTS/container/status.sh $1
+				shift
+			;;
+			-i | --initilize )
+				shift
+				$SCRIPTS/initilize.sh
+				shift
+			;;
+			-b | --backup )
+				shift
+				$SCRIPTS/backup.sh
+				shift
+			;;
+			-re | --restore )
+				shift
+				$SCRIPTS/restore.sh
+				shift
+			;;
+			-sy | --sync )
+				shift
+				$SCRIPTS/sync.sh
+				shift
+			;;
+		esac
+	done
+fi
 
-# Main Execution Loop
-while [ "$1" != "" ]
-do
-	case $1 in
-		-r | --run )
-			shift
-			$SCRIPTS/container/start.sh $1
-			shift
-		;;
-		-s | --stop )
-			shift
-			$SCRIPTS/container/stop.sh $1
-			shift
-		;;
-		-u | --update )
-			shift
-			$SCRIPTS/container/update.sh $1
-			shift
-		;;
-		-ps | --show )
-			shift
-			$SCRIPTS/container/status.sh $1
-			shift
-		;;
-		-b | --backup )
-			shift
-			$SCRIPTS/backup.sh
-			shift
-		;;
-		-re | --restore )
-			shift
-			$SCRIPTS/restore.sh
-			shift
-		;;
-		-sy | --sync )
-			shift
-			$SCRIPTS/sync.sh
-			shift
-		;;
-	esac
-done
+echo ""

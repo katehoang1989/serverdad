@@ -1,10 +1,4 @@
+#!/bin/bash
+
 cd /home/yatesab/serverdad
-./serverdad
-cd /home/yatesab/serverdad
-./serverdad
-cd /home/yatesab/serverdad
-./serverdad
-cd /home/yatesab/serverdad
-./serverdad
-cd /home/yatesab/serverdad
-./serverdad
+./serverdad $@

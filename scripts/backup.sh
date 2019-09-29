@@ -8,9 +8,9 @@ function backup(){
 	echo "Backing Up $1"
 	if [ "$service" = "plex" ]
 	then
-		tar --exclude=./plex/Library/Application\ Support/Plex\ Media\ Server/Cache -czf $BACKUPDIR/plex.tar.gz ./plex
+		sudo tar --exclude=./plex/Library/Application\ Support/Plex\ Media\ Server/Cache -czf $BACKUPDIR/plex.tar.gz ./plex
 	else
-		tar -czf $BACKUPDIR/$1.tar.gz ./$1 > /dev/null
+		sudo tar -czf $BACKUPDIR/$1.tar.gz ./$1 > /dev/null
 	fi
 }
 

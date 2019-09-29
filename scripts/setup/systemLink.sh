@@ -8,24 +8,49 @@ SBIN=/usr/local/sbin/serverdad
 ###########################
 # Setting up system link
 ###########################
-if [ ! -f $DIR/appLink ]
+echo ""
+echo "Setup System Link"
+echo "------------"
+echo "Would you like to setup system link now? (y/n)"
+printf "> "
+read answer
+
+if [ "$answer" != "${answer#[Yy]}" ]
 then
-    rm $DIR/appLink
+    echo ""
+
+    if [ -f $DIR/appLink ]
+    then
+        echo "Removed old link file"
+        rm $DIR/appLink
+    fi
+
+    echo ""
+    echo "Creating new file"
+    echo "#!/bin/bash" >> $DIR/appLink
+    echo "" >> $DIR/appLink
+    echo "cd $DIR" >> $DIR/appLink
+    printf './serverdad $@' >> $DIR/appLink
+
+    chmod +x $DIR/appLink
+
+    echo ""
+    echo "Linking file to $BIN"
+    if [ -f $BIN ]
+    then
+        echo "Removed old link file"
+        sudo rm $BIN
+    fi
+    
+    sudo ln -s $DIR/appLink $BIN
+
+    echo ""
+    echo "Linking file to $SBIN"
+    if [ -f $SBIN ]
+    then
+        echo "Removed old link file"
+        sudo rm $SBIN
+    fi
+
+    sudo ln -s $DIR/appLink $SBIN
 fi
-
-echo "cd $DIR" >> $DIR/appLink
-echo "./serverdad" >> $DIR/appLink
-
-if [ -f $BIN ]
-then
-    rm $BIN
-fi
-
-ln -s $DIR/appLink $BIN
-
-if [ -f $SBIN ]
-then
-    rm $SBIN
-fi
-
-ln -s $DIR/appLink $SBIN
