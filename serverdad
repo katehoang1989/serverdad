@@ -4,6 +4,7 @@
 export DIR="$( cd "$(dirname "$0")" ; pwd -P )"
 export APPDIR=$DIR/apps
 export SCRIPTS=$DIR/scripts
+export CONTAINER=$SCRIPTS/container
 export SETUP=$SCRIPTS/setup
 export BACKUPDIR=$DIR/backups
 export ENVFILE=$SCRIPTS/.env
@@ -13,13 +14,14 @@ export COMPOSEFILE=$DIR/docker-compose.yml
 
 echo ""
 echo "=========================================================================="
-echo " _____                     ____        _ "
-echo "|   __|___ ___ _ _ ___ ___|    \ ___ _| |"
-echo "|__   | -_|  _| | | -_|  _|  |  | .'| . |"
-echo "|_____|___|_|  \_/|___|_| |____/|__,|___|"
+echo "  _____                     ____        _ "
+echo " |   __|___ ___ _ _ ___ ___|    \ ___ _| |"
+echo " |__   | -_|  _| | | -_|  _|  |  | .'| . |"
+echo " |_____|___|_|  \_/|___|_| |____/|__,|___|"
+echo " "
+echo " While we wait let me tell you a joke: "
 echo ""
-echo "While we wait let me tell you a joke: "
-echo ""
+printf " "
 curl -H 'Accept: text/plain' https://icanhazdadjoke.com/
 echo ""
 echo ""
@@ -42,22 +44,27 @@ else
 		case $1 in
 			-r | --run )
 				shift
-				$SCRIPTS/container/start.sh $1
+				$CONTAINER/start.sh $1
 				shift
 			;;
 			-s | --stop )
 				shift
-				$SCRIPTS/container/stop.sh $1
+				$CONTAINER/stop.sh $1
 				shift
 			;;
 			-u | --update )
 				shift
-				$SCRIPTS/container/update.sh $1
+				$CONTAINER/update.sh $1
 				shift
 			;;
 			-ps | --show )
 				shift
-				$SCRIPTS/container/status.sh $1
+				$CONTAINER/status.sh $1
+				shift
+			;;
+			-e | --exec )
+				shift
+				$CONTAINER/exec.sh $1
 				shift
 			;;
 			-i | --initilize )

@@ -11,6 +11,6 @@ read answer
 
 if [ "$answer" != "${answer#[Yy]}" ]
 then
-    cp $SCRIPTS/gdrive-linux-arm64 $DIR/gdrive
+    cp $SCRIPTS/gdrive-linux-x64 $DIR/gdrive
     $DIR/gdrive -a
 fi
