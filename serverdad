@@ -2,31 +2,10 @@
 
 # DIR Setup
 export DIR="$( cd "$(dirname "$0")" ; pwd -P )"
-export APPDIR=$DIR/apps
-export SCRIPTS=$DIR/scripts
-export CONTAINER=$SCRIPTS/container
-export SETUP=$SCRIPTS/setup
-export BACKUPDIR=$DIR/backups
-export ENVFILE=$SCRIPTS/.env
 
-# File Setup
-export COMPOSEFILE=$DIR/docker-compose.yml
+. ./config.sh
 
-echo ""
-echo "=========================================================================="
-echo "  _____                     ____        _ "
-echo " |   __|___ ___ _ _ ___ ___|    \ ___ _| |"
-echo " |__   | -_|  _| | | -_|  _|  |  | .'| . |"
-echo " |_____|___|_|  \_/|___|_| |____/|__,|___|"
-echo " "
-echo " While we wait let me tell you a joke: "
-echo ""
-printf " "
-curl -H 'Accept: text/plain' https://icanhazdadjoke.com/
-echo ""
-echo ""
-echo "=========================================================================="
-echo ""
+. ./serverdad-logo.sh
 
 # Check if docker is installed before we do a lot of docker things
 if ! dpkg -s docker &> /dev/null
@@ -42,52 +21,83 @@ else
 	while [ "$1" != "" ]
 	do
 		case $1 in
-			-r | --run )
+			container )
 				shift
-				$CONTAINER/start.sh $1
+				# Figure out what machine command
+				case $1 in
+					-r | --run )
+						shift
+						$CONTAINER/start.sh $1
+					;;
+					-s | --stop )
+		        			shift
+		        			$CONTAINER/stop.sh $1
+					;;
+					-u | --update )
+			            		shift
+	        		    		$CONTAINER/update.sh $1
+					;;
+					* )
+						shift
+						echo "No or incorrect argument passed to container command"
+					;;
+				esac
+			;;
+			machine )
+				shift
+				case $1 in
+					-u | --update )
+						shift
+						#update machine
+						$MACHINE/update.sh
+					;;
+					-s | --sleep )
+						shift
+						#sleep machine
+						$MACHINE/sleep.sh
+					;;
+					* )
+						shift
+						echo "No or incorrect arument passed to machine command"
+					;;
+				esac
+			;;
+			ps )
+				shift
+				$SCRIPTS/status.sh $1
 				shift
 			;;
-			-s | --stop )
+			exec )
 				shift
-				$CONTAINER/stop.sh $1
-				shift
-			;;
-			-u | --update )
-				shift
-				$CONTAINER/update.sh $1
+				$SCRIPTS/exec.sh $1
 				shift
 			;;
-			-ps | --show )
-				shift
-				$CONTAINER/status.sh $1
-				shift
-			;;
-			-e | --exec )
-				shift
-				$CONTAINER/exec.sh $1
-				shift
-			;;
-			-i | --initilize )
+			init )
 				shift
 				$SCRIPTS/initilize.sh
 				shift
 			;;
-			-b | --backup )
+			backup )
 				shift
 				$SCRIPTS/backup.sh
 				shift
 			;;
-			-re | --restore )
+			restore )
 				shift
 				$SCRIPTS/restore.sh
 				shift
 			;;
-			-sy | --sync )
+			sync )
 				shift
 				$SCRIPTS/sync.sh
 				shift
 			;;
+			* )
+				shift
+				echo "No arguments passed in"
+			;;
 		esac
+	shift
 	done
 fi
 

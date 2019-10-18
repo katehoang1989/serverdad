@@ -1,3 +1,5 @@
 .env
 gdrive
 appLink
+._*
+.DS*
