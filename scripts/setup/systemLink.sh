@@ -1,9 +1,9 @@
 #!/bin/bash
 
 #Get bin folder
-BIN=/usr/local/bin/serverdad
+BIN=/usr/bin/serverdad
 #Get sbin folder
-SBIN=/usr/local/sbin/serverdad
+SBIN=/usr/sbin/serverdad
 
 ###########################
 # Setting up system link

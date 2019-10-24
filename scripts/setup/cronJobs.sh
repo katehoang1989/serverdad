@@ -31,8 +31,8 @@ then
 		echo "####################################################" >> ./newcron
 		echo "# Sleep Script" >> ./newcron
 		echo "####################################################" >> ./newcron
-		echo "0 0 * * 2-5 /home/yatesab/serverdad/serverdad machine -s" >> ./newcron
-		echo "0 1 * * 6,0,1 /home/yatesab/serverdad/serverdad machine -s" >> ./newcron
+		echo "0 0 * * 2-5 serverdad machine -s" >> ./newcron
+		echo "0 1 * * 6,0,1 serverdad machine -s" >> ./newcron
 
 		echo "  - Sleep job added to crontab!"
 	fi
@@ -49,7 +49,7 @@ then
 		echo "####################################################" >> ./newcron
 		echo "# Update Script" >> ./newcron
 		echo "####################################################" >> ./newcron
-		echo "0 21 * * * /home/yatesab/serverdad/serverdad machine -u" >> ./newcron
+		echo "0 21 * * * serverdad machine -u" >> ./newcron
 
 		echo "  - Update job added to crontab!"
 	fi
@@ -66,7 +66,7 @@ then
 		echo "####################################################" >> ./newcron
 		echo "# Backup Script" >> ./newcron
 		echo "####################################################" >> ./newcron
-		echo "0 22 * * 0 /home/yatesab/serverdad/serverdad backup" >> ./newcron
+		echo "0 22 * * 0 serverdad backup" >> ./newcron
 
 		echo "  - Backup job added to crontab!"
 	fi
@@ -83,7 +83,7 @@ then
 		echo "####################################################" >> ./newcron
 		echo "# Sync Script" >> ./newcron
 		echo "####################################################" >> ./newcron
-		echo "0 0 * * 1 /home/yatesab/serverdad/serverdad sync" >> ./newcron
+		echo "0 0 * * 1 serverdad sync" >> ./newcron
 
 		echo "  - Sync job added to crontab!"
 	fi
