@@ -92,6 +92,11 @@ else
 				$SCRIPTS/sync.sh
 				shift
 			;;
+			logs )
+				shift
+				cat $LOGDIR/$1.log
+				shift
+			;;
 			* )
 				shift
 				echo "No arguments passed in"

@@ -49,7 +49,7 @@ then
 		echo "####################################################" >> ./newcron
 		echo "# Update Script" >> ./newcron
 		echo "####################################################" >> ./newcron
-		echo "0 21 * * * serverdad machine -u" >> ./newcron
+		echo "0 22 * * * serverdad machine -u" >> ./newcron
 
 		echo "  - Update job added to crontab!"
 	fi
@@ -66,7 +66,7 @@ then
 		echo "####################################################" >> ./newcron
 		echo "# Backup Script" >> ./newcron
 		echo "####################################################" >> ./newcron
-		echo "0 22 * * 0 serverdad backup" >> ./newcron
+		echo "0 23 * * 0 serverdad backup" >> ./newcron
 
 		echo "  - Backup job added to crontab!"
 	fi

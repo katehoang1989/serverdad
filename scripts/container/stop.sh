@@ -1,16 +1,13 @@
 #!/bin/bash
 
-LOGFILE=$LOGDIR/container.log
+LOGFILE=$LOGDIR/application.log
 
-echo "<*********************************>" >> $LOGFILE
 if [ "$1" = "" ]
 then
-	echo "Containers Stopped: " >> $LOGFILE
+	echo "$(date)[DOCKER - STOP] All Containers Stopped & Removed" >> $LOGFILE
 else
-	echo "Container $1 Stopped: " >> $LOGFILE
+	echo "$(date)[DOCKER - STOP] $1 Container Stopped & Removed" >> $LOGFILE
 fi
-date >> $LOGFILE
-echo "<*********************************>" >> $LOGFILE
 
 docker-compose -f $COMPOSEFILE stop $1
 docker-compose -f $COMPOSEFILE rm $1

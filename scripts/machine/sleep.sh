@@ -1,10 +1,7 @@
 #!/bin/bash
 
-LOGFILE=$LOGDIR/machine.log
+LOGFILE=$LOGDIR/application.log
 
-echo "<*********************************>" >> $LOGFILE
-echo "System Sleep: " >> $LOGFILE
-date >> $LOGFILE
-echo "<*********************************>" >> $LOGFILE
+echo "$(date)[SYSTEM - SLEEP] Server Nightly Sleep Activated" >> $LOGFILE
 
 sudo systemctl suspend

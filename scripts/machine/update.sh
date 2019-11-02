@@ -1,11 +1,8 @@
 #!/bin/bash
 
-LOGFILE=$LOGDIR/machine.log
+LOGFILE=$LOGDIR/application.log
 
-echo "<*********************************>" >> $LOGFILE
-echo "System Update: " >> $LOGFILE
-date >> $LOGFILE
-echo "<*********************************>" >> $LOGFILE
+echo "$(date)[SYSTEM - UPDATE] System Updated" >> $LOGFILE
 
 sudo apt update
 

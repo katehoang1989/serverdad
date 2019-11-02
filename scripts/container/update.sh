@@ -1,16 +1,13 @@
 #!/bin/bash
 
-LOGFILE=$LOGDIR/container.log
+LOGFILE=$LOGDIR/application.log
 
-echo "<*********************************>" >> $LOGFILE
 if [ "$1" = "" ]
 then
-        echo "Containers Updated: " >> $LOGFILE
+        echo "$(date)[DOCKER - UPDATE] All Containers Updated" >> $LOGFILE
 else
-        echo "Container $1 Updated: " >> $LOGFILE
+        echo "$(date)[DOCKER - UPDATE] $1 Container Updated" >> $LOGFILE
 fi
-date >> $LOGFILE
-echo "<*********************************>" >> $LOGFILE
 
 
 if [ "$1" = "plex" ]
