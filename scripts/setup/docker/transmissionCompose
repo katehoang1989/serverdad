@@ -1,0 +1,44 @@
+
+  transmission:
+    container_name: transmission
+    image: haugene/transmission-openvpn:latest
+    cap_add:
+      - NET_ADMIN
+    logging:
+      driver: "json-file"
+    restart: always
+    volumes:
+      - ${APPDIR}/transmission:/data
+      - ${DOWNLOADDIR}:/downloads
+      - /etc/localtime:/etc/localtime
+    environment:
+      TZ: ${TZ}
+      PUID: ${PUID}
+      PGID: ${PGID}
+      CREATE_TUN_DEVICE: 'true'
+      OPENVPN_PROVIDER: 'WINDSCRIBE'
+      OPENVPN_CONFIG: 'US-West-tcp'
+      OPENVPN_USERNAME: 'yatesab12_cq53bd'
+      OPENVPN_PASSWORD: 'bsd7rwthc8'
+      WEBPROXY_ENABLED: 'false'
+      LOCAL_NETWORK: '192.168.29.0/24'
+      TRANSMISSION_DOWNLOAD_DIR: '/downloads/complete'
+      TRANSMISSION_INCOMPLETE_DIR: '/downloads/incomplete'
+      TRANSMISSION_RPC_AUTHENTICATION_REQUIRED: 'true'
+      TRANSMISSION_RPC_USERNAME: 'yatesab'
+      TRANSMISSION_RPC_PASSWORD: ${TRANSMISSIONPASS}
+      TRANSMISSION_SPEED_LIMIT_UP_ENABLED: 'true'
+      TRANSMISSION_SPEED_LIMIT_UP: 0
+      TRANSMISSION_RATIO_LIMIT: 0
+      TRANSMISSION_RATIO_LIMIT_ENABLED: 'true'
+      TRANSMISSION_DOWNLOAD_QUEUE_SIZE: 2
+
+  transmission-proxy:
+    container_name: transmission-proxy
+    image: haugene/transmission-openvpn-proxy
+    restart: always
+    depends_on:
+      - transmission
+    environment: *default-environment
+    ports:
+      - "${TRANSMISSIONHPORT}:${TRANSMISSIONCPORT}"

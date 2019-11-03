@@ -10,6 +10,8 @@ export CONTAINER=$SCRIPTS/container
 export MACHINE=$SCRIPTS/machine
 export SETUP=$SCRIPTS/setup
 
+export DOCKERDIR=$SETUP/docker
+
 # Backup and Logs
 export BACKUPDIR=$DIR/backups
 export LOGDIR=$DIR/logs

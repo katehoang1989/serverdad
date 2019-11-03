@@ -2,6 +2,7 @@
 ###########################
 # Gdrive Setup
 ###########################
+clear
 echo ""
 echo "Setup Gdrive"
 echo "------------"

@@ -1,0 +1,12 @@
+
+  radarr:
+    image: linuxserver/radarr
+    container_name: radarr
+    restart: always
+    environment: *default-environment
+    volumes:
+      - ${APPDIR}/radarr:/config
+      - ${MOVIEDIR}:/movies
+      - ${DOWNLOADDIR}:/downloads
+    ports:
+      - "${RADARRHPORT}:${RADARRCPORT}"

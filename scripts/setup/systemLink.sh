@@ -8,6 +8,7 @@ SBIN=/usr/sbin/serverdad
 ###########################
 # Setting up system link
 ###########################
+clear
 echo ""
 echo "Setup System Link"
 echo "------------"

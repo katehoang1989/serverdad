@@ -135,22 +135,24 @@ then
     printToEnv ""
 
     #Add Container Ports
-    printToEnv "#Container Ports"
-    printToEnv "COUCHCPORT=5050"
-    printToEnv "OMBICPORT=3579"
-    printToEnv "SICKCPORT=8081"
+    #Container Ports
+    printToEnv "TRANSMISSIONCPORT=8080"
+    printToEnv "SONARRCPORT=8989"
+    printToEnv "RADARRCPORT=7878"
     printToEnv "TAUTULLICPORT=8181"
-    printToEnv "TRANSMISSIONCPORT=9091"
-    printToEnv "TRANSMISSIONPROXY=8080"
+    printToEnv "OMBICPORT=3579"
+    printToEnv "ORGANIZRCPORT=80"
+    printToEnv "JACKETTCPORT=9117"
     printToEnv ""
-
-    #Add Host Ports
-    printToEnv "#Host Ports"
+    
+    #Host Ports
     printToEnv "TRANSMISSIONHPORT=8080"
-    printToEnv "SICKHPORT=8081"
-    printToEnv "TAUTULLIHPORT=8082"
-    printToEnv "COUCHHPORT=8083"
+    printToEnv "SONARRHPORT=8081"
+    printToEnv "RADARRHPORT=8082"
+    printToEnv "TAUTULLIHPORT=8083"
     printToEnv "OMBIHPORT=8084"
+    printToEnv "ORGANIZRHPORT=8085"
+    printToEnv "JACKETTHPORT=8086"
     printToEnv ""
 
     # Setup App Password #

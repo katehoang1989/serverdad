@@ -1,0 +1,11 @@
+
+  jackett:
+    image: linuxserver/jackett
+    container_name: jackett
+    restart: always
+    environment: *default-environment
+    volumes:
+      - ${APPDIR}/jacket:/config
+      - ${DOWNLOADDIR}:/downloads
+    ports:
+      - ${JACKETTHPORT}:${JACKETTCPORT}

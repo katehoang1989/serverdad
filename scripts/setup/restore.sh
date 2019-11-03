@@ -11,6 +11,7 @@ function restore(){
 	tar -xzf $BACKUPDIR/$1.tar.gz > /dev/null
 }
 
+clear
 echo ""
 echo "Restore Data:"
 echo "---------------------"
