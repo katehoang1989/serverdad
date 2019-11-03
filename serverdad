@@ -65,36 +65,43 @@ else
 					;;
 				esac
 			;;
+			# Displays the status of all the containers being ran
 			ps )
 				shift
 				$SCRIPTS/status.sh $1
 				shift
 			;;
+			# Remote into the container you pass in
 			exec )
 				shift
 				$SCRIPTS/exec.sh $1
 				shift
 			;;
+			# Initilize the files and folders for this program
 			init )
 				shift
 				$SCRIPTS/initilize.sh
 				shift
 			;;
+			# Backup all the containers being ran
 			backup )
 				shift
 				$SCRIPTS/backup.sh
 				shift
 			;;
+			# Restore all the containers information
 			restore )
 				shift
 				$SCRIPTS/restore.sh
 				shift
 			;;
+			# Sync the files locally to the google drive backup
 			sync )
 				shift
 				$SCRIPTS/sync.sh
 				shift
 			;;
+			# Display the logs kept locally
 			logs )
 				shift
 				$SCRIPTS/logs.sh $@
