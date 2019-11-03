@@ -11,4 +11,5 @@ fi
 
 cd $SETTINGSDIR
 docker-compose -f $COMPOSEFILE stop $1
+echo ""
 docker-compose -f $COMPOSEFILE rm $1
