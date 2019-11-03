@@ -2,6 +2,7 @@
 
 # APP DIR
 export APPDIR=$DIR/apps
+export SETTINGSDIR=$DIR/settings/
 
 #Script DIRs
 export SCRIPTS=$DIR/scripts
@@ -15,4 +16,4 @@ export LOGDIR=$DIR/logs
 
 # File Setup
 export ENVFILE=$SCRIPTS/.env
-export COMPOSEFILE=$DIR/docker-compose.yml
+export COMPOSEFILE=$SETTINGSDIR/docker-compose.yml

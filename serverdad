@@ -5,10 +5,10 @@
 export DIR="$( cd "$(dirname "$0")" ; pwd -P )"
 
 # Loads the default Variables for direcotries like APPDIR
-. ./config.sh
+. $DIR/settings/config.sh
 
 # Prints the Serverdad log and a joke from the icanhazdadjokes api
-. ./serverdad-logo.sh
+. $DIR/serverdad-logo.sh
 
 # Check if docker is installed before we do a lot of docker things
 if ! dpkg -s docker &> /dev/null
@@ -16,7 +16,7 @@ then
         sudo apt install docker docker-compose -y
 fi
 
-if [ ! -f "$DIR/.env" ]
+if [ ! -f "$SETTINGSDIR/.env" ]
 then
 	$SETUP/envCreation.sh
 else
