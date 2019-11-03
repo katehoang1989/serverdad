@@ -1,0 +1,8 @@
+
+  ouroboros:
+      container_name: ouroboros
+      image: pyouroboros/ouroboros:latest
+      restart: always
+      environment: *default-environment
+      volumes:
+          - /var/run/docker.sock:/var/run/docker.sock

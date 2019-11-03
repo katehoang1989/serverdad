@@ -1,0 +1,11 @@
+
+  plex:
+    container_name: plex
+    image: plexinc/pms-docker:public
+    restart: always
+    network_mode: "host"
+    environment: *default-environment
+    volumes:
+      - ${APPDIR}/plex:/config
+      - ${TRANSCODEDIR}:/transcode
+      - ${LOCALMEDIADIR}:/local_media

@@ -1,0 +1,10 @@
+
+  ombi:
+    container_name: ombi
+    image: linuxserver/ombi:latest
+    restart: always
+    environment: *default-environment
+    volumes:
+      - ${APPDIR}/ombi:/config
+    ports:
+      - "${OMBIHPORT}:${OMBICPORT}"

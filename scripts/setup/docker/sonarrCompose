@@ -1,0 +1,12 @@
+
+  sonarr:
+    container_name: sonarr
+    image: linuxserver/sonarr
+    restart: always
+    environment: *default-environment
+    volumes:
+      - ${APPDIR}/sonarr:/config
+      - ${TVDIR}:/tv
+      - ${DOWNLOADDIR}:/downloads
+    ports:
+      - "${SONARRHPORT}:${SONARRCPORT}"

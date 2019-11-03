@@ -1,0 +1,10 @@
+
+  tautulli:
+    container_name: tautulli
+    image: tautulli/tautulli:latest
+    restart: always
+    environment: *default-environment
+    volumes:
+      - ${APPDIR}/tautulli:/config
+    ports:
+      - "${TAUTULLIHPORT}:${TAUTULLICPORT}"
