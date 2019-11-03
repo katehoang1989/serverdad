@@ -84,7 +84,7 @@ then
     fi
     echo ""
     printToEnv "MOVIEDIR=$MOVIEDIR"
-    
+
     ###################
     # TV Shows Folder #
     ###################
@@ -167,7 +167,7 @@ then
 
     # Move .env File #
     #================#
-    mv $ENVFILE $DIR
+    mv $ENVFILE $SETTINGSDIR
 
     echo ""
 else
