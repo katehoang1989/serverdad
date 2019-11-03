@@ -4,9 +4,9 @@ LOGFILE=$LOGDIR/application.log
 
 if [ "$1" = "" ]
 then
-        echo "$(date)[DOCKER - UPDATE] All Containers Updated" >> $LOGFILE
+        echo "$(date) [ DOCKER - UPDATE ] All Containers Updated" >> $LOGFILE
 else
-        echo "$(date)[DOCKER - UPDATE] $1 Container Updated" >> $LOGFILE
+        echo "$(date) [ DOCKER - UPDATE ] $1 Container Updated" >> $LOGFILE
 fi
 
 

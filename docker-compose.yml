@@ -8,20 +8,16 @@ x-environment:
 
 services:
 
-  couchpotato:
-    container_name: couchpotato
-    image: couchpotato/couchpotato:latest
+  jackett:
+    image: linuxserver/jackett
+    container_name: jackett
     restart: always
-    environment:
-      TZ: ${TZ}
-      CP_UID: ${PUID}
-      CP_GID: ${PGID}
+    environment: *default-environment
     volumes:
-      - ${APPDIR}/couchpotato:/datadir
-      - ${MOVIEDIR}:/media
+      - ${APPDIR}/jacket:/config
       - ${DOWNLOADDIR}:/downloads
     ports:
-      - "${COUCHHPORT}:${COUCHCPORT}"
+      - ${JACKETTHPORT}:${JACKETTCPORT}
 
   ombi:
     container_name: ombi
@@ -32,6 +28,16 @@ services:
       - ${APPDIR}/ombi:/config
     ports:
       - "${OMBIHPORT}:${OMBICPORT}"
+
+  organizr:
+    container_name: organizr
+    image: organizrtools/organizr-v2
+    restart: always
+    environment: *default-environment
+    volumes:
+      - ${APPDIR}/organizr:/config
+    ports:
+      - "${ORGANIZRHPORT}:${ORGANIZRCPORT}"
 
   ouroboros:
     container_name: ouroboros
@@ -52,17 +58,29 @@ services:
       - ${TRANSCODEDIR}:/transcode
       - ${LOCALMEDIADIR}:/local_media
 
-  sickrage:
-    container_name: sickrage
-    image: sickrage/sickrage:latest
-    restart: always        
+  radarr:
+    image: linuxserver/radarr
+    container_name: radarr
+    restart: always
+    environment: *default-environment 
+    volumes:
+      - ${APPDIR}/radarr:/config
+      - ${MOVIEDIR}:/movies
+      - ${DOWNLOADDIR}:/downloads
+    ports:
+      - "${RADARRHPORT}:${RADARRCPORT}"
+
+  sonarr:
+    container_name: sonarr
+    image: linuxserver/sonarr
+    restart: always
     environment: *default-environment
     volumes:
-      - ${APPDIR}/sickrage:/config
-      - ${DOWNLOADDIR}:/downloads
+      - ${APPDIR}/sonarr:/config
       - ${TVDIR}:/tv
+      - ${DOWNLOADDIR}:/downloads
     ports:
-      - "${SICKHPORT}:${SICKCPORT}"
+      - "${SONARRHPORT}:${SONARRCPORT}"
 
   tautulli:
     container_name: tautulli
@@ -116,4 +134,4 @@ services:
       - transmission
     environment: *default-environment
     ports:
-      - "${TRANSMISSIONPROXY}:${TRANSMISSIONHPORT}"
+      - "${TRANSMISSIONHPORT}:${TRANSMISSIONCPORT}"

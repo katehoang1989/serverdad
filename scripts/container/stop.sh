@@ -4,9 +4,9 @@ LOGFILE=$LOGDIR/application.log
 
 if [ "$1" = "" ]
 then
-	echo "$(date)[DOCKER - STOP] All Containers Stopped & Removed" >> $LOGFILE
+	echo "$(date) [ DOCKER - STOP ] All Containers Stopped & Removed" >> $LOGFILE
 else
-	echo "$(date)[DOCKER - STOP] $1 Container Stopped & Removed" >> $LOGFILE
+	echo "$(date) [ DOCKER - STOP ] $1 Container Stopped & Removed" >> $LOGFILE
 fi
 
 docker-compose -f $COMPOSEFILE stop $1

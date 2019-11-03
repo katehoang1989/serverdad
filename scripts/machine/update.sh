@@ -2,7 +2,7 @@
 
 LOGFILE=$LOGDIR/application.log
 
-echo "$(date)[SYSTEM - UPDATE] System Updated" >> $LOGFILE
+echo "$(date) [ SYSTEM - UPDATE ] System Updated" >> $LOGFILE
 
 sudo apt update
 

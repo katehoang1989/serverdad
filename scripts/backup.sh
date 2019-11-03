@@ -1,6 +1,6 @@
 #!/bin/bash
 
-services=( tautulli sickrage ombi couchpotato plex )
+services=( jackett ombi organizr plex radarr sonarr tautulli )
 
 PLEXCACHE=./plex/Library/Application\ Support/Plex\ Media\ Server/Cache
 
@@ -12,11 +12,11 @@ function backup(){
 	then
 		sudo tar --exclude=./plex/Library/Application\ Support/Plex\ Media\ Server/Cache -czf $BACKUPDIR/plex.tar.gz ./plex
 
-                echo "$(date)[BACKUP - plex] Backup Created" >> $LOGFILE
+                echo "$(date) [ BACKUP - plex ] Backup Created" >> $LOGFILE
 	else
 		sudo tar -czf $BACKUPDIR/$1.tar.gz ./$1 > /dev/null
 
-		echo "$(date)[BACKUP - $1] Backup Created" >> $LOGFILE
+		echo "$(date) [ BACKUP - $1 ] Backup Created" >> $LOGFILE
 	fi
 }
 

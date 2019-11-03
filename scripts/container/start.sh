@@ -4,9 +4,9 @@ LOGFILE=$LOGDIR/application.log
 
 if [ "$1" = "" ]
 then
-        echo "$(date)[DOCKER - START] All Containers Started" >> $LOGFILE
+        echo "$(date) [ DOCKER - START ] All Containers Started" >> $LOGFILE
 else
-        echo "$(date)[DOCKER - START] $1 Container Started" >> $LOGFILE
+        echo "$(date) [ DOCKER - START ] $1 Container Started" >> $LOGFILE
 fi
 
 docker-compose -f $COMPOSEFILE up -d $1

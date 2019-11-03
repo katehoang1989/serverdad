@@ -1,10 +1,13 @@
 #!/bin/bash
 
-# DIR Setup
+# Establishing the root DIR for the application.
+# Everything else uses this to make there directories so this is very important
 export DIR="$( cd "$(dirname "$0")" ; pwd -P )"
 
+# Loads the default Variables for direcotries like APPDIR
 . ./config.sh
 
+# Prints the Serverdad log and a joke from the icanhazdadjokes api
 . ./serverdad-logo.sh
 
 # Check if docker is installed before we do a lot of docker things
@@ -94,7 +97,7 @@ else
 			;;
 			logs )
 				shift
-				cat $LOGDIR/$1.log
+				$SCRIPTS/logs.sh $@
 				shift
 			;;
 			* )
