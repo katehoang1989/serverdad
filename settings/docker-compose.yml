@@ -62,7 +62,7 @@ services:
     image: linuxserver/radarr
     container_name: radarr
     restart: always
-    environment: *default-environment 
+    environment: *default-environment
     volumes:
       - ${APPDIR}/radarr:/config
       - ${MOVIEDIR}:/movies
@@ -125,7 +125,7 @@ services:
       TRANSMISSION_RATIO_LIMIT: 0
       TRANSMISSION_RATIO_LIMIT_ENABLED: 'true'
       TRANSMISSION_DOWNLOAD_QUEUE_SIZE: 2
-  
+
   transmission-proxy:
     container_name: transmission-proxy
     image: haugene/transmission-openvpn-proxy
