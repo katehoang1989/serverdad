@@ -2,7 +2,7 @@
   jackett:
     image: linuxserver/jackett
     container_name: jackett
-    restart: always
+    restart: on-failure
     environment: *default-environment
     volumes:
       - ${APPDIR}/jacket:/config

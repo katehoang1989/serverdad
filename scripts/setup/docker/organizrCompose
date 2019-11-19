@@ -2,7 +2,7 @@
   organizr:
     container_name: organizr
     image: organizrtools/organizr-v2
-    restart: always
+    restart: on-failure
     environment: *default-environment
     volumes:
       - ${APPDIR}/organizr:/config

@@ -6,7 +6,7 @@
       - NET_ADMIN
     logging:
       driver: "json-file"
-    restart: always
+    restart: on-failure
     volumes:
       - ${APPDIR}/transmission:/data
       - ${DOWNLOADDIR}:/downloads
@@ -36,7 +36,7 @@
   transmission-proxy:
     container_name: transmission-proxy
     image: haugene/transmission-openvpn-proxy
-    restart: always
+    restart: on-failure
     depends_on:
       - transmission
     environment: *default-environment

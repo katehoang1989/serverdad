@@ -2,7 +2,7 @@
   plex:
     container_name: plex
     image: plexinc/pms-docker:public
-    restart: always
+    restart: on-failure
     network_mode: "host"
     environment: *default-environment
     volumes:

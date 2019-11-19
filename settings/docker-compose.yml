@@ -11,7 +11,7 @@ services:
   jackett:
     image: linuxserver/jackett
     container_name: jackett
-    restart: on-failure
+    restart: always
     environment: *default-environment
     volumes:
       - ${APPDIR}/jacket:/config
@@ -22,7 +22,7 @@ services:
   ombi:
     container_name: ombi
     image: linuxserver/ombi:latest
-    restart: on-failure
+    restart: always
     environment: *default-environment
     volumes:
       - ${APPDIR}/ombi:/config
@@ -32,7 +32,7 @@ services:
   organizr:
     container_name: organizr
     image: organizrtools/organizr-v2
-    restart: on-failure
+    restart: always
     environment: *default-environment
     volumes:
       - ${APPDIR}/organizr:/config
@@ -40,17 +40,17 @@ services:
       - "${ORGANIZRHPORT}:${ORGANIZRCPORT}"
 
   ouroboros:
-    container_name: ouroboros
-    image: pyouroboros/ouroboros:latest
-    restart: on-failure
-    environment: *default-environment
-    volumes:
-      - /var/run/docker.sock:/var/run/docker.sock
+      container_name: ouroboros
+      image: pyouroboros/ouroboros:latest
+      restart: always
+      environment: *default-environment
+      volumes:
+          - /var/run/docker.sock:/var/run/docker.sock
 
   plex:
     container_name: plex
     image: plexinc/pms-docker:public
-    restart: on-failure
+    restart: always
     network_mode: "host"
     environment: *default-environment
     volumes:
@@ -61,8 +61,8 @@ services:
   radarr:
     image: linuxserver/radarr
     container_name: radarr
-    restart: on-failure
-    environment: *default-environment 
+    restart: always
+    environment: *default-environment
     volumes:
       - ${APPDIR}/radarr:/config
       - ${MOVIEDIR}:/movies
@@ -73,7 +73,7 @@ services:
   sonarr:
     container_name: sonarr
     image: linuxserver/sonarr
-    restart: on-failure
+    restart: always
     environment: *default-environment
     volumes:
       - ${APPDIR}/sonarr:/config
@@ -85,11 +85,10 @@ services:
   tautulli:
     container_name: tautulli
     image: tautulli/tautulli:latest
-    restart: on-failure
+    restart: always
     environment: *default-environment
     volumes:
       - ${APPDIR}/tautulli:/config
-      - ${APPDIR}/plex/Library/Application Support/Plex Media Server/Logs:/plex_logs:ro
     ports:
       - "${TAUTULLIHPORT}:${TAUTULLICPORT}"
 
@@ -100,7 +99,7 @@ services:
       - NET_ADMIN
     logging:
       driver: "json-file"
-    restart: on-failure
+    restart: always
     volumes:
       - ${APPDIR}/transmission:/data
       - ${DOWNLOADDIR}:/downloads
@@ -126,11 +125,11 @@ services:
       TRANSMISSION_RATIO_LIMIT: 0
       TRANSMISSION_RATIO_LIMIT_ENABLED: 'true'
       TRANSMISSION_DOWNLOAD_QUEUE_SIZE: 2
-  
+
   transmission-proxy:
     container_name: transmission-proxy
     image: haugene/transmission-openvpn-proxy
-    restart: on-failure
+    restart: always
     depends_on:
       - transmission
     environment: *default-environment

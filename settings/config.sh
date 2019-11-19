@@ -11,6 +11,7 @@ export MACHINE=$SCRIPTS/machine
 export SETUP=$SCRIPTS/setup
 
 export DOCKERDIR=$SETUP/docker
+export CRONDIR=$SETUP/cron
 
 # Backup and Logs
 export BACKUPDIR=$DIR/backups

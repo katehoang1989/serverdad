@@ -21,7 +21,7 @@ read answer
 
 if [ "$answer" != "${answer#[Yy]}" ]
 then
-    $DIR/gdrive sync download 10sNGS3CI7JaQLkqHwPWwtkHiHtho7-hs $DIR/backups
+    	#$DIR/gdrive sync download 10sNGS3CI7JaQLkqHwPWwtkHiHtho7-hs $DIR/backups
 
 	cd $APPDIR
 

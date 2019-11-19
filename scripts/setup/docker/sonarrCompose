@@ -2,7 +2,7 @@
   sonarr:
     container_name: sonarr
     image: linuxserver/sonarr
-    restart: always
+    restart: on-failure
     environment: *default-environment
     volumes:
       - ${APPDIR}/sonarr:/config

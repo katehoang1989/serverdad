@@ -2,7 +2,7 @@
   tautulli:
     container_name: tautulli
     image: tautulli/tautulli:latest
-    restart: always
+    restart: on-failure
     environment: *default-environment
     volumes:
       - ${APPDIR}/tautulli:/config

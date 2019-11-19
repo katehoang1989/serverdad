@@ -2,7 +2,7 @@
   radarr:
     image: linuxserver/radarr
     container_name: radarr
-    restart: always
+    restart: on-failure
     environment: *default-environment
     volumes:
       - ${APPDIR}/radarr:/config

@@ -2,7 +2,7 @@
   ombi:
     container_name: ombi
     image: linuxserver/ombi:latest
-    restart: always
+    restart: on-failure
     environment: *default-environment
     volumes:
       - ${APPDIR}/ombi:/config
