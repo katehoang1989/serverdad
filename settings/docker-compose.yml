@@ -9,7 +9,7 @@ x-environment:
 services:
 
   jackett:
-    image: linuxserver/jackett
+    image: linuxserver/jackett:latest
     container_name: jackett
     restart: always
     environment: *default-environment
@@ -31,7 +31,7 @@ services:
 
   organizr:
     container_name: organizr
-    image: organizrtools/organizr-v2
+    image: organizrtools/organizr-v2:plex
     restart: always
     environment: *default-environment
     volumes:
@@ -59,7 +59,7 @@ services:
       - ${LOCALMEDIADIR}:/local_media
 
   radarr:
-    image: linuxserver/radarr
+    image: linuxserver/radarr:latest
     container_name: radarr
     restart: always
     environment: *default-environment
@@ -72,7 +72,7 @@ services:
 
   sonarr:
     container_name: sonarr
-    image: linuxserver/sonarr
+    image: linuxserver/sonarr:latest
     restart: always
     environment: *default-environment
     volumes:
@@ -128,7 +128,7 @@ services:
 
   transmission-proxy:
     container_name: transmission-proxy
-    image: haugene/transmission-openvpn-proxy
+    image: haugene/transmission-openvpn-proxy:latest
     restart: always
     depends_on:
       - transmission

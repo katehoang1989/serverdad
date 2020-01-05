@@ -2,6 +2,6 @@
 
 LOGFILE=$LOGDIR/application.log
 
-echo "$(date) [ BACKUP - SYNC ] Backup Files Synced" >> $LOGFILE
+cp -R $DIR/backups $LOCALMEDIADIR/backup/serverdadBackups
 
-$DIR/gdrive sync upload $DIR/backups 10sNGS3CI7JaQLkqHwPWwtkHiHtho7-hs
+echo "$(date) [ BACKUP - SYNC ] Backup Files Synced" >> $LOGFILE

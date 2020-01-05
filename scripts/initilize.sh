@@ -14,5 +14,7 @@ $SETUP/systemLink.sh
 
 #$SETUP/restore.sh
 
+$SETUP/zerotier.sh
+
 clear
 echo "Serverdad Initilized!"
