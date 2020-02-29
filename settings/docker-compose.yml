@@ -82,6 +82,18 @@ services:
     ports:
       - "${SONARRHPORT}:${SONARRCPORT}"
 
+lidarr:
+    image: linuxserver/lidarr
+    container_name: lidarr
+    environment: *default-environment
+    volumes:
+      - ${APPDIR}/lidarr:/config
+      - ${MUSICDIR}:/music
+      - ${DOWNLOADDIR}:/downloads
+    ports:
+      - 8686:8686
+    restart: unless-stopped
+
   tautulli:
     container_name: tautulli
     image: tautulli/tautulli:latest
